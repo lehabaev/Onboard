@@ -233,6 +233,8 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     // the center of the width, and the content width we want to fill up, which is some
     // fraction of the view width we set in the multipler constant
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    CGFloat viewHeight = CGRectGetHeight(self.view.frame);
+
     CGFloat horizontalCenter = viewWidth / 2;
     CGFloat contentWidth = viewWidth * kContentWidthMultiplier;
     
@@ -240,7 +242,8 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
         
         // create the image view with the appropriate image, size, and center in on screen
         _imageView = [[UIImageView alloc] initWithImage:_image];
-        [_imageView setFrame:CGRectMake(horizontalCenter - (self.iconWidth / 2), self.topPadding, self.iconWidth, self.iconHeight)];
+        [_imageView setFrame:CGRectMake(horizontalCenter - (viewHeight / 2), self.topPadding, viewHeight, viewHeight)];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:_imageView];
     
     } else if (self.videoURL) {
