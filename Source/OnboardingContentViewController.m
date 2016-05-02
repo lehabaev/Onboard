@@ -242,7 +242,8 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
         
         // create the image view with the appropriate image, size, and center in on screen
         _imageView = [[UIImageView alloc] initWithImage:_image];
-        [_imageView setFrame:CGRectMake(horizontalCenter - (viewHeight / 2), self.topPadding, viewHeight, viewHeight)];
+        
+        [_imageView setFrame:CGRectMake(horizontalCenter - (viewHeight / 2), 0, viewHeight, viewHeight)];
         _imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:_imageView];
     
@@ -265,7 +266,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     }
     
     // create and configure the main text label sitting underneath the icon with the provided padding
-    _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_imageView.frame) + self.underIconPadding, contentWidth, 0)];
+    _mainTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.underIconPadding, contentWidth, 0)];
     _mainTextLabel.accessibilityIdentifier = kOnboardMainTextAccessibilityIdentifier;
     _mainTextLabel.text = _titleText;
     _mainTextLabel.textColor = self.titleTextColor;
@@ -277,7 +278,7 @@ NSString * const kOnboardActionButtonAccessibilityIdentifier = @"OnboardActionBu
     [self.view addSubview:_mainTextLabel];
     
     // create and configure the sub text label
-    _subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_mainTextLabel.frame) + self.underTitlePadding, contentWidth, 0)];
+    _subTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.underTitlePadding, contentWidth, 0)];
     _subTextLabel.accessibilityIdentifier = kOnboardSubTextAccessibilityIdentifier;
     _subTextLabel.text = _body;
     _subTextLabel.textColor = self.bodyTextColor;
